@@ -1,0 +1,3 @@
+colsample_bytree: [.5, .9, 1.]
+subsample: [.6, .95, 1.]
+target_name: ["quality"]

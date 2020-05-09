@@ -1,0 +1,39 @@
+name: MLProjectTemplate
+
+conda_env: conda.yaml
+
+entry_points:
+  etl_data:
+    parameters:
+      training_data:  {type: string, default: "./data/wine-quality.csv"}
+    command: "python etl_data.py --training_data {training_data}"
+
+  train:
+    parameters:
+      training_data: {type: string, default: "./data/wine-quality.csv"}
+      colsample_bytree: {type: float, default: 1.0}
+      subsample: {type: float, default: 1.0}
+    command: "python train.py --training_data={training_data}
+                              --colsample_bytree={colsample_bytree}
+                              --subsample={subsample}"
+
+  grid_search:
+    parameters:
+      training_data: {type: string, default: "./data/wine-quality.csv"}
+      config_path: {type: string, default: "./data/config.yml"}
+      max_runs: {type: int, default: 8}
+      max_p: {type: int, default: 2}
+      epochs: {type: int, default: 32}
+      metric: {type: string, default: "mse"}
+      seed: {type: int, default: 97531}
+    command: "python grid_search.py  --training_data={training_data}
+                                       --config_path={config_path}
+                                       --max-runs {max_runs}
+                                       --max-p {max_p}
+                                       --metric {metric}
+                                       --seed {seed}"
+
+
+
+
+
